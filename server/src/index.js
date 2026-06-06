@@ -42,6 +42,9 @@ app.get('/api/health', (req, res) => {
 // Décommentée et branchée en Phase 4
 // const contactRouter = require('./routes/contact.route');
 // app.use('/api/contact', contactRouter);
+// ─── APRÈS (Phase 4 — actif) ─────────────────────────────────────
+const contactRouter = require('./routes/contact.route');
+app.use('/api/contact', contactRouter);
 
 // ─── 5. Middleware 404 ───────────────────────────────────────────
 // Intercepte toute route non définie ci-dessus
