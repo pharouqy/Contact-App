@@ -32,39 +32,62 @@ const ContactForm = () => {
     return classes.join(' ');
   };
 
-  // ─── Vue Succès ────────────────────────────────────────────────
-  if (status === 'success') {
-    return (
-      <div className="contact-wrapper">
-        <div className="contact-success">
-          <div className="success-icon" aria-hidden="true">
-            ✅
-          </div>
+  const heroFeatures = [
+    'Réponse rapide et personnalisée',
+    'Accompagnement clair et humain',
+    'Suivi sécurisé de votre demande',
+  ];
 
-          <h2>Message envoyé avec succès !</h2>
+  const renderHeroCopy = () => (
+    <div className="hero-copy">
+      <span className="hero-eyebrow">Contactez-moi</span>
 
-          <p>
-            Merci pour votre message. Nous vous répondrons dans les plus
-            brefs délais.
-          </p>
+      <h1 className="hero-title">Faites avancer votre projet avec une vraie écoute.</h1>
 
-          <button
-            type="button"
-            onClick={resetForm}
-            className="btn btn-secondary"
-          >
-            Envoyer un autre message
-          </button>
+      <p className="hero-text">
+        Que ce soit pour une collaboration, un devis ou une simple question,
+        envoyez votre message et recevez une réponse rapide et personnalisée.
+      </p>
+
+      <ul className="hero-list" aria-label="Avantages du contact">
+        {heroFeatures.map((feature) => (
+          <li key={feature}>{feature}</li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const renderSuccessCard = () => (
+    <div className="hero-card">
+      <div className="contact-success">
+        <div className="success-icon" aria-hidden="true">
+          ✅
         </div>
-      </div>
-    );
-  }
 
-  // ─── Vue Formulaire ────────────────────────────────────────────
-  return (
-    <div className="contact-wrapper">
+        <h2>Message envoyé avec succès !</h2>
+
+        <p>
+          Merci pour votre message. Nous vous répondrons dans les plus
+          brefs délais.
+        </p>
+
+        <button
+          type="button"
+          onClick={resetForm}
+          className="btn btn-secondary"
+        >
+          Envoyer un autre message
+        </button>
+      </div>
+    </div>
+  );
+
+  const renderFormCard = () => (
+    <div className="hero-card">
       <div className="contact-card">
-        <h1 className="contact-title">Contactez-nous</h1>
+        <span className="hero-card-badge">Prêt à discuter ?</span>
+
+        <h1 className="contact-title">Envoyez votre message</h1>
 
         <p className="contact-subtitle">
           Remplissez le formulaire ci-dessous. Tous les champs sont
@@ -86,7 +109,6 @@ const ContactForm = () => {
           noValidate
           aria-label="Formulaire de contact"
         >
-          {/* ───────────── NOM ───────────── */}
           <div className={getFieldClass('nom')}>
             <label htmlFor="nom">Nom complet</label>
 
@@ -115,7 +137,6 @@ const ContactForm = () => {
             </span>
           </div>
 
-          {/* ───────────── EMAIL ───────────── */}
           <div className={getFieldClass('email')}>
             <label htmlFor="email">Adresse email</label>
 
@@ -144,7 +165,6 @@ const ContactForm = () => {
             </span>
           </div>
 
-          {/* ───────────── SUJET ───────────── */}
           <div className={getFieldClass('sujet')}>
             <label htmlFor="sujet">Sujet</label>
 
@@ -172,7 +192,6 @@ const ContactForm = () => {
             </span>
           </div>
 
-          {/* ───────────── MESSAGE ───────────── */}
           <div className={getFieldClass('message')}>
             <label htmlFor="message">Message</label>
 
@@ -210,7 +229,6 @@ const ContactForm = () => {
             </span>
           </div>
 
-          {/* ───────────── BOUTON ───────────── */}
           <button
             type="submit"
             className="btn btn-primary"
@@ -230,6 +248,15 @@ const ContactForm = () => {
             )}
           </button>
         </form>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="contact-wrapper">
+      <div className="landing-hero">
+        {renderHeroCopy()}
+        {status === 'success' ? renderSuccessCard() : renderFormCard()}
       </div>
     </div>
   );
